@@ -1,7 +1,8 @@
 const { connection } = require(`../../config/db`);
 
 class Pessoa {
-  constructor (nomeDaPessoa,cpf,dataNasc,genero,email,dataDeCadastro,enderecoId='') {
+  constructor (id='',nomeDaPessoa='',cpf='',dataNasc='',genero='',email='',dataDeCadastro='',enderecoId=0) {
+    this.id = id
     this.nome = nomeDaPessoa,
     this.cpf = cpf,
     this.dataNasc = dataNasc,
@@ -12,13 +13,5 @@ class Pessoa {
 
   }
 
-  async criarNovaPessoa() {
-    try {
-      const conn = await connection();
-      const [rows] = await conn.query(`insert into tbl_pessoa (nome,cpf,data_nasc,genero,email,data_cad,endereco_id) values ('${this.nome}','${this.cpf}', '${this.dataNasc}','${this.genero}','${this.email}','${this.dataDeCadastro}','${this.enderecoId}')`)
-      return rows;
-    } catch (error) {
-      throw error;
-    }
-  }
+  
 }
